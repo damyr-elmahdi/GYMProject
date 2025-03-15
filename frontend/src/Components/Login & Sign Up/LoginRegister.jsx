@@ -4,6 +4,10 @@ import { AppContext } from "../../Context/AppContext";
 import "./LoginRegister.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'boxicons/css/boxicons.min.css';
+// Import for Boxicons if needed
+// If you're using a CDN, make sure it's included in your index.html
+// import 'boxicons/css/boxicons.min.css';
 
 const LoginRegister = () => {
   const { setToken, user, setUser } = useContext(AppContext);
@@ -36,6 +40,12 @@ const LoginRegister = () => {
   // Handle login form submission
   async function handleLogin(e) {
     e.preventDefault();
+
+    if (!loginData.email || !loginData.password) {
+      toast.error("Fill in all fields before proceeding!");
+      return;
+    }
+
     try {
       const res = await fetch("/api/login", {
         method: "post",
@@ -64,6 +74,12 @@ const LoginRegister = () => {
   // Handle register form submission
   async function handleRegister(e) {
     e.preventDefault();
+
+    if (!registerData.name || !registerData.email || !registerData.password) {
+      toast.error("Fill in all fields before proceeding!");
+      return;
+    }
+
     try {
       const res = await fetch("/api/register", {
         method: "post",
@@ -84,8 +100,15 @@ const LoginRegister = () => {
       }
     } catch (error) {
       console.error("Registration error:", error);
-      setRegisterErrors({ general: ["An error occurred during registration."] });
-      toast.error("An error occurred during registration.");
+      
+      if (error.response && error.response.status === 422) {
+        const errorMessage = error.response.data.errors?.email?.[0] || "Email already exists!";
+        toast.error(errorMessage);
+        setRegisterErrors({ email: [errorMessage] });
+      } else {
+        setRegisterErrors({ general: ["An error occurred during registration."] });
+        toast.error("An error occurred during registration.");
+      }
     }
   }
 
