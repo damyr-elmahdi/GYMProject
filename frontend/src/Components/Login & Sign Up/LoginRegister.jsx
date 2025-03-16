@@ -171,7 +171,8 @@ const LoginRegister = () => {
               <button type="submit" className="btn">
                 Login
               </button>
-              
+              <br />
+              <br />
               <p>or login with social platforms</p>
               <div className="social-icons">
                 <a href="#">
