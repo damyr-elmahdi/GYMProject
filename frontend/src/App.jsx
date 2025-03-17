@@ -7,7 +7,10 @@ import Class from "./Components/Landing Page/Class";
 import Trainer from "./Components/Landing Page/Trainer";
 import Price from "./Components/Landing Page/Price";
 import Client from "./Components/Landing Page/Client";
-import Footer from "./Components/Landing Page/Footer"; // Make sure to import Footer
+import Footer from "./Components/Landing Page/Footer";
+import AdminDashboard from "./Components/Dashboard/AdminDashboard";
+import ClientDashboard from "./Components/Dashboard/ClientDashboard";
+import ProtectedRoute from "./Components/ProtectedRoute";
 import AppProvider from "./Context/AppContext";
 import "remixicon/fonts/remixicon.css";
 
@@ -30,6 +33,22 @@ export default function App() {
           }
         />
         <Route path="/login-register" element={<LoginRegister />} />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute requiredRole="admin">
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/client/dashboard"
+          element={
+            <ProtectedRoute requiredRole="client">
+              <ClientDashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </AppProvider>
   );

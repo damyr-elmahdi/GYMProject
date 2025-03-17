@@ -11,11 +11,6 @@
 }
 
 
-  body {
-    overflow-x: hidden;
-  }
-
-
 * {
   padding: 0;
   margin: 0;
@@ -29,7 +24,7 @@
 }
 
 .header {
-  width: 1519px;
+  width: 100%; /* Changed from fixed width 1519px to 100% */
 }
 
 .section__header {
@@ -76,6 +71,8 @@
 img {
   display: flex;
   width: 100%;
+  max-width: 100%; /* Added for better responsiveness */
+  height: auto; /* Added for better responsiveness */
 }
 
 a {
@@ -159,6 +156,7 @@ nav {
 .nav__menu__btn {
   font-size: 1.5rem;
   color: var(--text-dark);
+  cursor: pointer; /* Added for better UX */
 }
 
 .header__container {
@@ -427,7 +425,9 @@ nav {
   padding-inline: 2rem;
   border-radius: 5px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-  width: 468px;
+  width: 100%; /* Changed from fixed width 468px to 100% */
+  max-width: 468px; /* Added max-width instead */
+  margin: 0 auto; /* Center the card */
 }
 
 .client__card img {
@@ -533,17 +533,79 @@ nav {
   text-align: center;
 }
 
+/* User dropdown styles */
+.user-dropdown-container {
+  position: relative;
+}
+
+.user-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--white);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 0.5rem;
+  z-index: 100;
+  min-width: 120px;
+}
+
+.logout-btn {
+  width: 100%;
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--text-dark);
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--primary-color);
+}
+
+/* Media queries - small mobile first */
+@media (max-width: 480px) {
+  .section__header {
+    font-size: 1.8rem;
+  }
+  
+  .header__content h4 {
+    font-size: 1.8rem;
+  }
+  
+  .header__content .section__header {
+    font-size: 2.5rem;
+  }
+  
+  .about__card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .swiper-slide {
+    padding-top: 5rem;
+  }
+  
+  .client__card {
+    padding: 3rem 1rem 1.5rem;
+  }
+  
+  .client__card img {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Media query for small tablets */
+/* Continuing from the previous media query */
 @media (width > 480px) {
-  .class__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem 1rem;
-  }
-
-  .trainer__grid {
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-  }
-
   .trainer__card:nth-child(3) {
     grid-area: 2/2/3/3;
   }
@@ -558,6 +620,7 @@ nav {
   }
 }
 
+/* Media query for tablets and small laptops */
 @media (width > 768px) {
   nav {
     position: static;
@@ -585,6 +648,7 @@ nav {
     flex-direction: row;
     background-color: transparent;
     transform: none;
+    z-index: 1000;
   }
 
   .header__container {
@@ -636,6 +700,7 @@ nav {
   }
 }
 
+/* Media query for larger screens */
 @media (width > 1024px) {
   .class__grid {
     gap: 2rem;
