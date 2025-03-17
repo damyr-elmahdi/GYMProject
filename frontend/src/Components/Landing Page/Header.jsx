@@ -62,6 +62,13 @@ const Header = () => {
                 <button className="btn user-btn" onClick={toggleDropdown}>
                   Welcome, {user.name}
                 </button>
+                {showDropdown && (
+                  <div className="dropdown-menu">
+                    <button className="logout-btn" onClick={handleLogout}>
+                      Logout
+                    </button>
+                  </div>
+                )}
               </div>
             ) : (
               <Link to="/login-register">
