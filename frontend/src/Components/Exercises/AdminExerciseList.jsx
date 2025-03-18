@@ -19,14 +19,15 @@ const AdminExerciseList = () => {
         },
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.message || "Failed to fetch exercises");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to fetch exercises");
       }
 
+      const data = await response.json();
       setExercises(data);
     } catch (error) {
+      console.error("Error fetching exercises:", error);
       setError(error.message);
     } finally {
       setLoading(false);
@@ -34,7 +35,7 @@ const AdminExerciseList = () => {
   };
 
   const handleDelete = async (id) => {
-    if (!confirm("Are you sure you want to delete this exercise?")) {
+    if (!window.confirm("Are you sure you want to delete this exercise?")) {
       return;
     }
 
@@ -47,25 +48,43 @@ const AdminExerciseList = () => {
         },
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.message || "Failed to delete exercise");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to delete exercise");
       }
 
+      // Remove the deleted exercise from state
       setExercises(exercises.filter((exercise) => exercise.idExercice !== id));
       alert("Exercise deleted successfully");
     } catch (error) {
+      console.error("Error deleting exercise:", error);
       setError(error.message);
     }
   };
 
+  // Function to properly format image path
+  const getImageUrl = (imagePath) => {
+    if (!imagePath) return null;
+    // If path already contains /storage, use it as is
+    if (imagePath.startsWith('/storage/')) return imagePath;
+    // Otherwise, format properly
+    return `/storage/${imagePath}`;
+  };
+
   if (loading) {
-    return <div className="text-center p-4">Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="text-xl text-gray-600">Loading exercises...</div>
+      </div>
+    );
   }
 
   if (error) {
-    return <div className="bg-red-100 p-4 text-red-700">{error}</div>;
+    return (
+      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+        Error: {error}
+      </div>
+    );
   }
 
   return (
@@ -92,9 +111,13 @@ const AdminExerciseList = () => {
               <div className="aspect-video bg-gray-200 mb-2">
                 {exercise.image && (
                   <img
-                    src={`/storage/${exercise.image}`}
+                    src={getImageUrl(exercise.image)}
                     alt={exercise.nom}
                     className="w-full h-full object-cover"
+                    onError={(e) => {
+                      console.error("Image failed to load:", exercise.image);
+                      e.target.src = "https://via.placeholder.com/300x200?text=Image+Not+Found";
+                    }}
                   />
                 )}
               </div>

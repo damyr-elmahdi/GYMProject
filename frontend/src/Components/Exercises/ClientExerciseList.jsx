@@ -172,7 +172,7 @@ const ClientExerciseList = () => {
               <div className="aspect-video bg-gray-200 mb-2">
                 {exercise.image && (
                   <img
-                    src={`/storage/${exercise.image}`}
+                    src={exercise.image ? `/storage/${exercise.image.replace('public/', '')}` : ''}
                     alt={exercise.nom}
                     className="w-full h-full object-cover"
                   />

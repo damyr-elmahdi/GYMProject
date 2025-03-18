@@ -9,6 +9,8 @@ class Exercise extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'idExercice';
+    
     protected $fillable = [
         'nom',
         'description',
