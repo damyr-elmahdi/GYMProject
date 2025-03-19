@@ -89,8 +89,16 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/client/exercises/:id"
+          element={
+            <ProtectedRoute requiredRole="client">
+              <ExerciseDetail />
+            </ProtectedRoute>
+          }
+        /> */}
+        <Route
+          path="/exercises/:id"
           element={
             <ProtectedRoute requiredRole="client">
               <ExerciseDetail />

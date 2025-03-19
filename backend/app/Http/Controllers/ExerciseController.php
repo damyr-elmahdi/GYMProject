@@ -38,6 +38,9 @@ class ExerciseController extends Controller
             if ($request->hasFile('image')) {
                 $path = $request->file('image')->store('exercise_images', 'public');
                 $exercise->image = $path;
+                
+                // Add this debug line
+                Log::info('Saved image path: ' . $path);
             }
 
             if ($request->hasFile('partieCorpsPic')) {
