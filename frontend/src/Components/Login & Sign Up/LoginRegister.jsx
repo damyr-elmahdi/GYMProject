@@ -18,7 +18,6 @@ const LoginRegister = () => {
     email: "",
     password: "",
   });
-  // const [loginErrors, setLoginErrors] = useState({});
 
   // Register form state
   const [registerData, setRegisterData] = useState({
@@ -27,7 +26,6 @@ const LoginRegister = () => {
     password: "",
     password_confirmation: "",
   });
-  // const [registerErrors, setRegisterErrors] = useState({});
 
   // Toggle password visibility
   const togglePasswordVisibility = () => {
@@ -57,7 +55,6 @@ const LoginRegister = () => {
       console.log("Login response:", data);
 
       if (data.errors) {
-        // setLoginErrors(data.errors);
         toast.error("Invalid email or password!");
       } else {
         localStorage.setItem("token", data.token);
@@ -76,7 +73,6 @@ const LoginRegister = () => {
       }
     } catch (error) {
       console.error("Login error:", error);
-      // setLoginErrors({ general: ["An error occurred during login."] });
       toast.error("An error occurred during login.");
     } finally {
       setIsLoading(false);
@@ -144,9 +140,6 @@ const LoginRegister = () => {
           <div className="forbox login">
             <form onSubmit={handleLogin}>
               <h1>Login</h1>
-              {/* {loginErrors.general && (
-                <p className="error">{loginErrors.general[0]}</p>
-              )} */}
 
               <div className="inpbox">
                 <input
@@ -159,9 +152,6 @@ const LoginRegister = () => {
                 />
                 <i className="bx bxs-envelope"></i>
               </div>
-              {/* {loginErrors.email && (
-                <p className="error">{loginErrors.email[0]}</p>
-              )} */}
 
               <div className="inpbox">
                 <input
@@ -179,9 +169,6 @@ const LoginRegister = () => {
                   style={{ cursor: "pointer" }}
                 ></i>
               </div>
-              {/* {loginErrors.password && (
-                <p className="error">{loginErrors.password[0]}</p>
-              )} */}
 
               <div className="forgot-link">
                 <a href="#">Forgot password ?</a>
@@ -213,9 +200,6 @@ const LoginRegister = () => {
           <div className="forbox register">
             <form onSubmit={handleRegister}>
               <h1>Registration</h1>
-              {/* {registerErrors.general && (
-                <p className="error">{registerErrors.general[0]}</p>
-              )} */}
 
               <div className="inpbox">
                 <input
@@ -228,9 +212,6 @@ const LoginRegister = () => {
                 />
                 <i className="bx bxs-user"></i>
               </div>
-              {/* {registerErrors.name && (
-                <p className="error">{registerErrors.name[0]}</p>
-              )} */}
 
               <div className="inpbox">
                 <input
@@ -243,71 +224,69 @@ const LoginRegister = () => {
                 />
                 <i className="bx bxs-envelope"></i>
               </div>
-              
+
               <div className="input-box">
 
-              )}
-              <div className="inpbox">
-                <input
-                  type={showPassword ? "text" : "password"} // Toggle input type
-                  placeholder="Password"
-                  value={registerData.password}
-                  onChange={(e) =>
-                    setRegisterData({
-                      ...registerData,
-                      password: e.target.value,
-                    })
-                  }
-                />
 
-                <i
-                  className={`bx ${showPassword ? "bxs-hide" : "bxs-show"}`} // Toggle eye icon
-                  onClick={togglePasswordVisibility}
-                  style={{ cursor: "pointer" }}
-                ></i>
-              </div>
-              {/* {registerErrors.password && (
-                <p className="error">{registerErrors.password[0]}</p>
-              )} */}
+                <div className="inpbox">
+                  <input
+                    type={showPassword ? "text" : "password"} // Toggle input type
+                    placeholder="Password"
+                    value={registerData.password}
+                    onChange={(e) =>
+                      setRegisterData({
+                        ...registerData,
+                        password: e.target.value,
+                      })
+                    }
+                  />
 
-              <div className="inpbox">
-                <input
-                  type={showPassword ? "text" : "password"} // Toggle input type
-                  placeholder="Confirm Password"
-                  value={registerData.password_confirmation}
-                  onChange={(e) =>
-                    setRegisterData({
-                      ...registerData,
-                      password_confirmation: e.target.value,
-                    })
-                  }
-                />
+                  <i
+                    className={`bx ${showPassword ? "bxs-hide" : "bxs-show"}`} // Toggle eye icon
+                    onClick={togglePasswordVisibility}
+                    style={{ cursor: "pointer" }}
+                  ></i>
+                </div>
 
-                <i
-                  className={`bx ${showPassword ? "bxs-hide" : "bxs-show"}`} // Toggle eye icon
-                  onClick={togglePasswordVisibility}
-                  style={{ cursor: "pointer" }}
-                ></i>
-              </div>
+                <div className="inpbox">
+                  <input
+                    type={showPassword ? "text" : "password"} // Toggle input type
+                    placeholder="Confirm Password"
+                    value={registerData.password_confirmation}
+                    onChange={(e) =>
+                      setRegisterData({
+                        ...registerData,
+                        password_confirmation: e.target.value,
+                      })
+                    }
+                  />
 
-              <button type="submit" className="button">
-                Register
-              </button>
+                  <i
+                    className={`bx ${showPassword ? "bxs-hide" : "bxs-show"}`} // Toggle eye icon
+                    onClick={togglePasswordVisibility}
+                    style={{ cursor: "pointer" }}
+                  ></i>
+                </div>
 
-              <p>or register with social platforms</p>
-              <div className="social-icons">
-                <a href="#">
-                  <i className="bx bxl-google"></i>
-                </a>
-                <a href="#">
-                  <i className="bx bxl-facebook"></i>
-                </a>
-                <a href="#">
-                  <i className="bx bxl-github"></i>
-                </a>
-                <a href="#">
-                  <i className="bx bxl-linkedin"></i>
-                </a>
+                <button type="submit" className="button">
+                  Register
+                </button>
+
+                <p>or register with social platforms</p>
+                <div className="social-icons">
+                  <a href="#">
+                    <i className="bx bxl-google"></i>
+                  </a>
+                  <a href="#">
+                    <i className="bx bxl-facebook"></i>
+                  </a>
+                  <a href="#">
+                    <i className="bx bxl-github"></i>
+                  </a>
+                  <a href="#">
+                    <i className="bx bxl-linkedin"></i>
+                  </a>
+                </div>
               </div>
             </form>
           </div>
