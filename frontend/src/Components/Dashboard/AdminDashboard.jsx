@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../../Context/AppContext";
 
@@ -73,11 +73,14 @@ const AdminDashboard = () => {
               </button>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="text-xl font-semibold text-gray-700">Content Moderation</h3>
-              <p className="text-gray-600 mt-2">Review and moderate user-submitted content</p>
-              <button className="mt-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition duration-300">
-                Moderate Content
-              </button>
+              <h3 className="text-xl font-semibold text-gray-700">Exercise Management</h3>
+              <p className="text-gray-600 mt-2">Create and manage fitness exercises</p>
+              <Link
+                to="/admin/exercises"
+                className="mt-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition duration-300 inline-block"
+              >
+                Manage Exercises
+              </Link>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
               <h3 className="text-xl font-semibold text-gray-700">System Settings</h3>

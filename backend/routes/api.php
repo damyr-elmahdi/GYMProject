@@ -3,9 +3,13 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ExerciseController;
+use App\Http\Controllers\FavoriteExerciseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
+Route::post('/your-endpoint', [ExerciseController::class, 'store']);  
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
@@ -55,4 +59,21 @@ Route::middleware(['auth:sanctum', 'role:client'])->group(function () {
             ]
         ]);
     });
+});
+
+// Exercise routes
+Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
+    Route::post('/exercises', [ExerciseController::class, 'store']);
+    Route::put('/exercises/{id}', [ExerciseController::class, 'update']);
+    Route::delete('/exercises/{id}', [ExerciseController::class, 'destroy']);
+});
+
+// Public exercise routes
+Route::get('/exercises', [ExerciseController::class, 'index']);
+Route::get('/exercises/{id}', [ExerciseController::class, 'show']);
+
+// Favorite exercise routes (for clients)
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('/exercises/{id}/favorite', [FavoriteExerciseController::class, 'toggleFavorite']);
+    Route::get('/favorites', [FavoriteExerciseController::class, 'getFavorites']);
 });
