@@ -124,7 +124,7 @@ const LoginRegister = () => {
   }
 
   return (
-    <div>
+    <div className="d-login-register">
       <ToastContainer
         position="top-right"
         autoClose={3000}

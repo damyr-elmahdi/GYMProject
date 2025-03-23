@@ -1,6 +1,7 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { AppContext } from "../Context/AppContext";
+import "./ProtectedRoute.css"
 
 const ProtectedRoute = ({ children, requiredRole }) => {
   const { token, user } = useContext(AppContext);
@@ -10,7 +11,7 @@ const ProtectedRoute = ({ children, requiredRole }) => {
     return <Navigate to="/login-register" replace />;
   }
   if (!user) {
-    return <div>Loading...</div>;
+    return <div className="part-loading">Loading...</div>;
   }
   // Check if user has the required role
   if (requiredRole && user.role !== requiredRole) {

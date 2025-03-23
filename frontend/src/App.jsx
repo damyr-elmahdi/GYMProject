@@ -17,6 +17,8 @@ import ClientExerciseList from "./Components/Exercises/ClientExerciseList";
 import ExerciseDetail from "./Components/Exercises/ExerciseDetail";
 import AppProvider from "./Context/AppContext";
 import "remixicon/fonts/remixicon.css";
+import Navbar from "./Components/Navbar/Navbar";
+import Food from "./Components/Food/Food";
 
 export default function App() {
   return (
@@ -81,6 +83,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/client/dashboard" element={<Navbar />} />
         <Route
           path="/client/exercises"
           element={
@@ -105,6 +108,8 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+        {/***************** Food Part  ******************/}
+        <Route path="/food" element={<Food />} />
       </Routes>
     </AppProvider>
   );
