@@ -72,7 +72,7 @@ const ExerciseDetail = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <div className="text-2xl text-blue-600 font-semibold animate-pulse">
+        <div className="ml-[520px] text-2xl text-blue-600 font-semibold animate-pulse">
           Loading exercise details...
         </div>
       </div>
@@ -124,7 +124,7 @@ const ExerciseDetail = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 max-w-4xl"  >
+    <div className="container mt-[-170px] mx-auto p-6 max-w-4xl"  >
       <div className="mb-6">
         <Link
           to="/client/exercises"
@@ -160,9 +160,8 @@ const ExerciseDetail = () => {
                   className="p-2 bg-gray-50 rounded-full shadow transition hover:scale-105"
                 >
                   <i
-                    className={`ri-heart-${
-                      isFavorite ? "fill text-red-500" : "line text-gray-500"
-                    } text-2xl`}
+                    className={`ri-heart-${isFavorite ? "fill text-red-500" : "line text-gray-500"
+                      } text-2xl`}
                   ></i>
                 </button>
               )}
@@ -171,13 +170,12 @@ const ExerciseDetail = () => {
             <div className="space-y-6">
               <div>
                 <span
-                  className={`inline-block text-sm font-medium px-3 py-1 rounded ${
-                    exercise.niveauDifficult === "Beginner"
-                      ? "bg-green-100 text-green-700"
-                      : exercise.niveauDifficult === "Intermediate"
+                  className={`inline-block text-sm font-medium px-3 py-1 rounded ${exercise.niveauDifficult === "Beginner"
+                    ? "bg-green-100 text-green-700"
+                    : exercise.niveauDifficult === "Intermediate"
                       ? "bg-yellow-100 text-yellow-700"
                       : "bg-red-100 text-red-700"
-                  }`}
+                    }`}
                 >
                   {exercise.niveauDifficult}
                 </span>

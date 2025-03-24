@@ -34,14 +34,6 @@ const ClientDashboard = () => {
         streakDays: 5
       });
 
-      // Example of how you might fetch this data:
-      // const response = await fetch("/api/user/stats", {
-      //   headers: { Authorization: `Bearer ${token}` }
-      // });
-      // const data = await response.json();
-      // if (response.ok) {
-      //   setStats(data);
-      // }
     } catch (error) {
       console.error("Error fetching stats:", error);
     }
@@ -80,7 +72,6 @@ const ClientDashboard = () => {
       <div className="client-div min-h-screen bg-gray-100">
         {/* Header */}
         <header className="header-d bg-blue-600 text-white p-4 flex justify-between items-center shadow-md">
-          {/* <h1 className="text-2xl font-bold">Client Dashboard</h1> */}
           <div className="ul-links">
             <ul>
               <li><a href="#">Exercices</a></li>
@@ -88,15 +79,6 @@ const ClientDashboard = () => {
               <li><a href="#">Store</a></li>
             </ul>
           </div>
-          {/* <div className="flex items-center space-x-4">
-            <span className="text-lg">Welcome, {user?.name}</span>
-            <button
-              onClick={handleLogout}
-              className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition duration-300"
-            >
-              Logout
-            </button>
-          </div> */}
           <div className="icon-profile">
             <a href="#"><i class="bi bi-person" onClick={handleClick}></i></a>
           </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../Context/AppContext";
+import "./ClientExerciseList.css"
 
 const ClientExerciseList = () => {
   const { token } = useContext(AppContext);
@@ -81,14 +82,14 @@ const ClientExerciseList = () => {
   };
 
   // Filter exercises based on selected filter
-  const filteredExercises = filter === "all" 
-    ? exercises 
-    : filter === "favorites" 
+  const filteredExercises = filter === "all"
+    ? exercises
+    : filter === "favorites"
       ? exercises.filter(exercise => favorites.includes(exercise.idExercice))
       : exercises.filter(exercise => exercise.partieCorps === filter);
 
   if (loading) {
-    return <div className="text-center p-4">Loading...</div>;
+    return <div className=" loading-exercice text-center p-4">Loading...</div>;
   }
 
   if (error) {
@@ -96,63 +97,56 @@ const ClientExerciseList = () => {
   }
 
   return (
-    <div className="p-4">
+    <div className="absolute top-[0px] left-0 w-full p-4">
       <h2 className="text-2xl font-bold mb-4">Exercise Library</h2>
 
       <div className="mb-4">
         <div className="flex flex-wrap gap-2">
           <button
-            className={`px-4 py-2 rounded ${
-              filter === "all" ? "bg-blue-500 text-white" : "bg-gray-200"
-            }`}
+            className={`px-4 py-2 rounded ${filter === "all" ? "bg-blue-500 text-white" : "bg-gray-200"
+              }`}
             onClick={() => setFilter("all")}
           >
             All Exercises
           </button>
           <button
-            className={`px-4 py-2 rounded ${
-              filter === "favorites" ? "bg-blue-500 text-white" : "bg-gray-200"
-            }`}
+            className={`px-4 py-2 rounded ${filter === "favorites" ? "bg-blue-500 text-white" : "bg-gray-200"
+              }`}
             onClick={() => setFilter("favorites")}
           >
             My Favorites
           </button>
           <button
-            className={`px-4 py-2 rounded ${
-              filter === "Arms" ? "bg-blue-500 text-white" : "bg-gray-200"
-            }`}
+            className={`px-4 py-2 rounded ${filter === "Arms" ? "bg-blue-500 text-white" : "bg-gray-200"
+              }`}
             onClick={() => setFilter("Arms")}
           >
             Arms
           </button>
           <button
-            className={`px-4 py-2 rounded ${
-              filter === "Legs" ? "bg-blue-500 text-white" : "bg-gray-200"
-            }`}
+            className={`px-4 py-2 rounded ${filter === "Legs" ? "bg-blue-500 text-white" : "bg-gray-200"
+              }`}
             onClick={() => setFilter("Legs")}
           >
             Legs
           </button>
           <button
-            className={`px-4 py-2 rounded ${
-              filter === "Chest" ? "bg-blue-500 text-white" : "bg-gray-200"
-            }`}
+            className={`px-4 py-2 rounded ${filter === "Chest" ? "bg-blue-500 text-white" : "bg-gray-200"
+              }`}
             onClick={() => setFilter("Chest")}
           >
             Chest
           </button>
           <button
-            className={`px-4 py-2 rounded ${
-              filter === "Back" ? "bg-blue-500 text-white" : "bg-gray-200"
-            }`}
+            className={`px-4 py-2 rounded ${filter === "Back" ? "bg-blue-500 text-white" : "bg-gray-200"
+              }`}
             onClick={() => setFilter("Back")}
           >
             Back
           </button>
           <button
-            className={`px-4 py-2 rounded ${
-              filter === "Core" ? "bg-blue-500 text-white" : "bg-gray-200"
-            }`}
+            className={`px-4 py-2 rounded ${filter === "Core" ? "bg-blue-500 text-white" : "bg-gray-200"
+              }`}
             onClick={() => setFilter("Core")}
           >
             Core
@@ -188,11 +182,10 @@ const ClientExerciseList = () => {
               <div className="flex justify-between items-center mt-2">
                 <button
                   onClick={() => toggleFavorite(exercise.idExercice)}
-                  className={`flex items-center ${
-                    favorites.includes(exercise.idExercice)
-                      ? "text-red-500"
-                      : "text-gray-400"
-                  }`}
+                  className={`flex items-center ${favorites.includes(exercise.idExercice)
+                    ? "text-red-500"
+                    : "text-gray-400"
+                    }`}
                 >
                   <i className={`ri-heart-${favorites.includes(exercise.idExercice) ? "fill" : "line"} text-xl mr-1`}></i>
                   {favorites.includes(exercise.idExercice) ? "Favorited" : "Add to Favorites"}

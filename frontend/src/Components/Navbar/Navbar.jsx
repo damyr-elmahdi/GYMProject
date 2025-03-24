@@ -22,11 +22,11 @@ export default function Navbar() {
                         <div className="text-title"><Link to={"/client/dashboard"}><img src={logo} alt="" /></Link></div>
                     </li>
                     <li className="link-nav link-1">
-                        <Link to={"/dashboard"} className="dashboard-link">
+                        <Link to={"/"} className="dashboard-link">
                             <div className="icon icon-accueil">
                                 <i className="ri-home-line"></i>
                             </div>
-                            <div className="text-accueil">Favorite Workouts</div>
+                            <div className="text-accueil">Dashboard</div>
                         </Link>
                     </li>
 
