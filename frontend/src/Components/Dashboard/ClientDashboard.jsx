@@ -86,6 +86,8 @@ const ClientDashboard = () => {
               <li><a href="#">Exercices</a></li>
               <li><Link to="/food">Food</Link></li>
               <li><a href="#">Store</a></li>
+
+
             </ul>
           </div>
           {/* <div className="flex items-center space-x-4">
